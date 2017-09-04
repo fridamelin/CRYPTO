@@ -1,5 +1,6 @@
 <?php
 class Crypto {
+    // Vilka bokstäver som skall "maskas", så siffror och specialtecken maskas också.
     public $vocals = array("a", "o", "u", "å", "e", "i", "y", "ä", "ö");
 
     public function enCrypt($input){

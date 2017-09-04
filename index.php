@@ -25,15 +25,13 @@
 
 <form method='post' action='index.php'>
 	<p>Encrypt</p>
-	<textarea name="encrypt" rows=10><?php echo $decrypted;?></textarea>
-	<br>
+	<input type="text" name="encrypt" value="<?php echo $decrypted;?>"/>
 	<input type='submit' value="Encrypt"/>
 </form>
 
 <form method='post' action='index.php'>
 	<p>Decrypt</p>	
-	<textarea name="decrypt" rows=10><?php echo $encrypted;?></textarea>
-	<br>
+	<input type="text" name="decrypt" value="<?php echo $encrypted;?>"/>
 	<input type='submit' value="Decrypt"/>
 </form>
 
