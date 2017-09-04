@@ -2,30 +2,41 @@
 <body>
 
 <?php
-	$NAME = "";
+
+require_once('crypto.php');
+
+$crypto = new Crypto();
+
+echo $crypto->deCrypt("d");
+
+	$INPUT = "";
 	
-	function Crypto($name) {
-		echo $name;
+	function Crypto($input) {
 		$consonants = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z');
-
-		if(count($name) === 0) {
-
-			for($i = 0; $i < count($name); $i++) {
-				for($j = 0; $j < count($consonants); $j++) {
-					if($name[$i] === $consonants[$j]) {
-						// echo $name[$i] . "o" . $name[$i];
-						echo $name;
-					}
+		var_dump($input);
+		if(strlen($input) > 0) {
+			$output = "";
+			//loopar igenom input
+			for($i = 0; $i < strlen($input); $i++) {
+				
+			//Om det finns en konsonant, lägg till o emellan bokstäverna. 
+			//annars skriv ut bokstaven 	
+				if(in_array($input[$i], $consonants)) {
+					$output = $output . $input[$i] . "o" . $input[$i];
+				}
+				else {
+					$output= $output . $input[$i];
 				}
 			}
+			echo $output;
 		}
 	}
 
 	if(isset($_POST['test']))
 	{   
     	$text = $_POST['test'];
-		$NAME = $text;
-		Crypto($NAME);
+		$INPUT = $text;
+		Crypto($INPUT);
 	}
 
 	
