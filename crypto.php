@@ -1,41 +1,42 @@
 <?php
 class Crypto {
-    public $consonants = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z');
-    
+    public $vocals = array("a", "o", "u", "å", "e", "i", "y", "ä", "ö");
+
     public function enCrypt($input){
 		if(strlen($input) > 0) {
-			$output = "";
-			// Loopar igenom input
+			$encrypted = "";
+			// Loopar igenom strängen vi får in
 			for($i = 0; $i < strlen($input); $i++) {
-                // Om det finns en konsonant, lägg till o och bokstaven igen. 
-                // Annars skriv ut vokalen	
-                if(in_array($input[$i], $this->consonants)) {
-                    $output = $output . $input[$i] . "o" . $input[$i];
+                // Om bokstaven inte är en vokal, lägg till "o" och bokstaven igen. 
+                // Annars lägg endast till vokalen.
+                if(!in_array($input[$i], $this->vocals)) {
+                    $encrypted = $encrypted . $input[$i] . "o" . $input[$i];
                 }
                 else {
-                    $output = $output . $input[$i];
+                    $encrypted = $encrypted . $input[$i];
                 }
 			}
-            return $output;
+            return $encrypted;
 		}
     }
 
     public function deCrypt($input){
 		if(strlen($input) > 0) {
-			$output = "";
-			// Loopar igenom input
+			$decrypted = "";
+			// Loopar igenom strängen vi får in
 			for($i = 0; $i < strlen($input); $i++) {
-                // Om det är en konsonant, så spara den till output. Därefter hoppa två steg i index
-                // Annars spara vokalen.
-				if(in_array($input[$i], $this->consonants)) {
-					$output = $output . $input[$i];
-                    $i = $i + 2;
+                // Om bokstaven inte är en vokal, spara den och därefter hoppa två steg i index.
+                // För att få bort bokstäverna vi la till i krypteringen.
+                // Annars lägg endast till vokalen.
+				if(!in_array($input[$i], $this->vocals)) {
+					$decrypted = $decrypted . $input[$i];
+                    $i = $i + 2; // Index
 				}
 				else {
-					$output = $output . $input[$i];
+					$decrypted = $decrypted . $input[$i];
 				}
 			}
         }
-        return $output;
+        return $decrypted;
     }
 }
